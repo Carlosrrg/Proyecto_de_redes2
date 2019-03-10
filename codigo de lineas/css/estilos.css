@@ -1,0 +1,23 @@
+body{
+	background-color: #46C0EC; 
+}
+.mover{
+	margin-top: 5%; 
+	margin-left: 10%;
+}
+.caja_bit {
+  width: 5%;
+  margin: 5px 5px 0 0;
+}
+.canvas_container {
+  width: 100%;
+  overflow: scroll;
+}
+
+.visible {
+  display: block;
+}
+
+.no-visible {
+  display: none;
+}

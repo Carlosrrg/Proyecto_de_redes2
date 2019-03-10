@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	    <title>Codigo de lineas</title>
+	    <link rel="stylesheet" href="css/bootstrap.min.css">
+	    <link rel="stylesheet" href="css/estilos.css">
+	</head>
+	<body>
+		<div class="container mover">
+	        <div class="row">
+	            <div class="col-md-8">
+	            	<div class="" id="mostrar_numero_bits">
+	                    <h3 class="text-info" for="bits">Integrantes: </h3><br>
+	                    <label class="text-info" for="bits">Carlos Roberto Ramos Garcia - 20121008840</label><br>
+	                    <label class="text-info" for="bits">Carlos Roberto Ramos Garcia - 20121008840</label><br>
+	                    <label class="text-info" for="bits">Carlos Roberto Ramos Garcia - 20121008840</label><br>
+	                    <label class="text-info" for="bits">Carlos Roberto Ramos Garcia - 20121008840</label><br>
+	                    <label class="text-info" for="bits">Carlos Roberto Ramos Garcia - 20121008840</label><br>
+	                </div><br>
+	                <div class="" id="mostrar_numero_bits">
+	                    <label class="text-info" for="bits">Numero de bits: </label>
+	                    <input type="text" class="form-control" name="bits_enviar" id="bits_enviar"><br>
+	                    <button class="btn btn-primary mt-3" id="btn_numero_bits">Siguiente</button>
+	                </div><br><br>
+	                <div class="" id="tipo_codigo_graficar">
+	                	<h2 class="text-center">Seleccione el metodo de graficar</h2>
+	                	<hr>
+	                    <label class="text-info" for="texto">Ingrese cada bit: </label>
+	                    <div class="bits_graficar" id="bits_graficar"></div>
+	                    <br>
+	                    <label  class= "text-info mt-3" for="texto">Codigo de linea: </label>
+	                    <select class="form-control" id="codigo_linea">
+	                        <option>--Seleccione una opcion--</option>
+	                        <option>RZ</option>
+	                        <option>NRZ</option>
+	                        <option>AMI</option>
+	                        <option>ADI</option>
+	                        <option>B3ZS</option>
+	                        <option>B6ZS</option>
+	                        <option>HDB3</option>
+	                        <option>MANCHESTER</option>
+	                        <option>CMI</option>
+	                    </select>
+	                    <br>
+	                    <button class="btn btn-success" id="btn_hacer_grafica">Graficar</button>
+	                    <br>
+	                    <hr>
+	                    <br>
+	                    <div class="canvas_container">
+	                        <canvas class="mt-4" width="800" height="200" id="grafica"></canvas>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+		<script src="js/procesar.js"></script>
+	</body>
+</html>
