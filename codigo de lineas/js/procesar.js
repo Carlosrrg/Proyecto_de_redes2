@@ -201,3 +201,136 @@ function senal_NRZ(arreglo_bits){
         }
     }
 }
+
+
+
+function senal_AMI(arreglo_bits){
+	arreglo_bits;
+	var posicionX = 1;
+	var posicionY = 1;
+	var arribaY = 2;
+    var abajoY = altura - 2; 
+    var linea_central = abajoY/2;
+    var cont = 0;
+    var alternador=0;
+
+    for(var i = 0; i < arreglo_bits.length; i++){
+    	if(arreglo_bits[i] == 1){
+            if(alternador==0){
+                if(posicionY == linea_central){
+                    hacer_linea(contexto, posicionX, linea_central, posicionX, arribaY, color_linea); //esta es la linea hacia arriba o abajo
+                    posicionY = arribaY;
+                    
+                }
+                for(var j = 0; j < 5; j++){
+                    cont++;
+                    hacer_linea(contexto, posicionX, posicionY, posicionX+=10, posicionY, color_linea);  //este hace la linea horizontal
+                }
+                if(cont >= 5){
+                    hacer_linea(contexto, posicionX, arribaY, posicionX, linea_central, color_linea);  //este vuelve hacer una linea hacia arriba o abajo
+                    posicionY = linea_central;
+                    for(var j = 0; j < 5; j++){
+                        hacer_linea(contexto, posicionX, posicionY, posicionX+=10, posicionY, color_linea); //y este vuelve a rellenar horizontal
+                    }
+                    alternador=1;
+                }
+            }else{
+                if(alternador==1){
+                    
+                        hacer_linea(contexto, posicionX, linea_central, posicionX, 200, color_linea); //esta es la linea hacia arriba o abajo
+                        posicionY = 200;
+                        
+                    
+                    for(var j = 0; j < 5; j++){
+                        cont++;
+                        hacer_linea(contexto, posicionX, posicionY, posicionX+=10, 200, color_linea);  //este hace la linea horizontal
+                    }
+                    if(cont >= 5){
+                        hacer_linea(contexto, posicionX, 100, posicionX, 200, color_linea);  //este vuelve hacer una linea hacia arriba o abajo
+                        posicionY = linea_central;
+                        for(var j = 0; j < 5; j++){
+                            hacer_linea(contexto, posicionX, posicionY, posicionX+=10, posicionY, color_linea); //y este vuelve a rellenar horizontal
+                        }
+                        alternador=0;
+                    }
+                    
+                }
+                
+            }
+    		
+        }
+        
+    	else{
+    		for(var j = 0; j < 10; j++){
+                posicionY = linea_central;
+                hacer_linea(contexto, posicionX, posicionY, posicionX+=10, posicionY, color_linea);
+            }
+    	}
+    }
+}
+
+
+function senal_ADI(arreglo_bits){
+	arreglo_bits;
+	var posicionX = 1;
+	var posicionY = 1;
+	var arribaY = 2;
+    var abajoY = altura - 2; 
+    var linea_central = abajoY/2;
+    var contador=0;
+    
+
+    for(var i = 0; i < arreglo_bits.length; i++){ 
+        //arriba
+        if(arreglo_bits[i-1] == arreglo_bits[i] ){ 
+
+            if(posicionY == linea_central){ 
+                hacer_linea(contexto, posicionX, linea_central, posicionX, arribaY, color_linea);              
+            
+            for(var j = 0; j < 10; j++){ 
+                posicionY = arribaY;
+                hacer_linea(contexto, posicionX, posicionY, posicionX+=10, posicionY, color_linea);
+            }
+            contador=3; 
+            }
+
+        //abajo
+        if(posicionY == posicionY){ 
+            hacer_linea(contexto, posicionX, 1, posicionX, linea_central, color_linea);              
+        
+            for(var j = 0; j < 10; j++){
+                posicionY = linea_central;
+                hacer_linea(contexto, posicionX, posicionY, posicionX+=10, posicionY, color_linea);
+            }
+        contador=2; 
+        }
+            
+        }
+        else{ //lenado en medio 
+            if(contador == 3){
+                
+                for(var j = 0; j < 10; j++){
+                    posicionY = 2;
+                    hacer_linea(contexto, posicionX, posicionY, posicionX=posicionX+10, posicionY, color_linea);
+                }
+            }else{
+                if(contador=2){
+                    for(var j = 0; j < 10; j++){
+                        posicionY = linea_central;
+                        hacer_linea(contexto, posicionX, posicionY, posicionX+=10, posicionY, color_linea);
+                    }
+                }
+            }
+            
+        }
+    }
+
+
+
+}
+
+
+//hacer_linea(contexto, posicionX, arribaY, posicionX, linea_central, color_linea); la hace hacia abajo
+
+
+
