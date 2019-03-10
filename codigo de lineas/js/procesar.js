@@ -40,7 +40,7 @@ btn_numero_bits.addEventListener("click", function(){
         tipo_codigo_graficar.className = "visible"; 
 
         for(var i = 0; i < cantidad_bits; i++){ 
-            bits_graficar.innerHTML += `<input type="text" class="caja_bit" id="bit_${i}" value="0">`; 
+            bits_graficar.innerHTML += `<input type="text" class="caja_bit" id="bit_${i}" placeholder="0">`; 
         }
         canvas.width =  cantidad_bits*100; 
         ancho = canvas.width; 
