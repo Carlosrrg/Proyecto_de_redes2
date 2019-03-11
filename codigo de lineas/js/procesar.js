@@ -398,55 +398,49 @@ function senal_MANCHESTER(arreglo_bits){
     var posicionY = 1;
     var arribaY = 3;
     var abajoY = altura - 3;
+    var cont = 0;
  
 
     for(var i = 0; i < arreglo_bits.length; i++){
         if(arreglo_bits[i] == 1){ 
-            if(posicionY == arribaY){
-                for(var i = 0; i < 5; i++){
-                    hacer_linea(contexto, posicionX, arribaY, posicionX+=10, arribaY, color_linea);
-                }
-                hacer_linea(contexto, posicionX, posicionY, posicionX, abajoY, color_linea);
-                for(var i = 0; i < 5; i++){
-                    hacer_linea(contexto, posicionX, abajoY, posicionX+=10, abajoY, color_linea);
-                }
+            if (posicionY == abajoY) {
+                hacer_linea(contexto, posicionX, abajoY, posicionX, arribaY, color_linea);
                 posicionY = arribaY;
             }
-            /*else {
-                hacer_linea(contexto, posicionX, abajoY, posicionX, arribaY, color_linea);
-                for(var i = 0; i < 5; i++){
-                    hacer_linea(contexto, posicionX, arribaY, posicionX+=10, arribaY, color_linea);
-                }
-                hacer_linea(contexto, posicionX, arribaY, posicionX, abajoY, color_linea);
-                for(var i = 0; i < 5; i++){
-                    hacer_linea(contexto, posicionX, abajoY, posicionX+=10, abajoY, color_linea);
-                }
+            else{
+                posicionY = arribaY;
+            }
+            for(var i = 0; i < 5; i++){
+                cont++;
+                hacer_linea(contexto, posicionX, posicionY, posicionX+=10, posicionY, color_linea);
+            }   
+            if(cont >= 5){
+                hacer_linea(contexto, posicionX, posicionY, posicionX, abajoY, color_linea);
                 posicionY = abajoY;
-            }  */  
+                for(var i = 0; i < 5; i++){
+                    hacer_linea(contexto, posicionX, posicionY, posicionX+=10, posicionY, color_linea);
+                }
+            }   
         }
         else{
-            if (posicionY == abajoY) {
+            if (posicionY == arribaY) {
+                hacer_linea(contexto, posicionX, posicionY, posicionX, abajoY, color_linea);
+                posicionY = abajoY;
+            }
+            else{
+                posicionY = abajoY;
+            }
+            for(var j = 0; j < 5; j++){
+                cont++;
+                hacer_linea(contexto, posicionX, posicionY, posicionX+=10, posicionY, color_linea);
+            }
+            if (cont >= 5) {
+                hacer_linea(contexto, posicionX, posicionY, posicionX, arribaY, color_linea);
+                posicionY = arribaY;
                 for(var j = 0; j < 5; j++){
                     hacer_linea(contexto, posicionX, posicionY, posicionX+=10, posicionY, color_linea);
                 }
-                hacer_linea(contexto, posicionX, posicionY, posicionX, arribaY, color_linea);
-                for(var j = 0; j < 5; j++){
-                    hacer_linea(contexto, posicionX, arribaY, posicionX+=10, arribaY, color_linea);
-                }
-                posicionY = arribaY;
             }
-            else {
-                hacer_linea(contexto, posicionX, posicionY, posicionX, abajoY, color_linea);
-                for(var j = 0; j < 5; j++){
-                    hacer_linea(contexto, posicionX, abajoY, posicionX+=10, abajoY, color_linea);
-                }
-                hacer_linea(contexto, posicionX, abajoY, posicionX, arribaY, color_linea);
-                for(var j = 0; j < 5; j++){
-                    hacer_linea(contexto, posicionX, arribaY, posicionX+=10, arribaY, color_linea);
-                }
-                posicionY = arribaY;
-            }
-           
         }
     }
 }
