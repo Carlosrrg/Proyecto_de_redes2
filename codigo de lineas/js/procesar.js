@@ -378,6 +378,99 @@ function senal_CMI(arreglo_bits){
 }
 
 
+
+
+function senal_MANCHESTER(arreglo_bits){
+    arreglo_bits;
+	var posicionX = 1;
+	var posicionY = 1;
+	var arribaY = 2;
+    var abajoY = altura - 2; 
+    var linea_central = abajoY/2;
+    var contador=0;
+    var contador2=0;
+
+
+    var Posicion =linea_central*2;
+
+    for(var i = 0; i < arreglo_bits.length; i++){
+
+        if(arreglo_bits[i]==1){
+            if(arreglo_bits[i]==arreglo_bits[i+1]){
+                hacer_linea(contexto, posicionX, arribaY, posicionX=posicionX+50, arribaY, color_linea);
+                hacer_linea(contexto, posicionX, arribaY, posicionX, Posicion, color_linea);
+                hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+50, Posicion, color_linea);
+                hacer_linea(contexto, posicionX, Posicion, posicionX, arribaY, color_linea);
+            }else{
+                hacer_linea(contexto, posicionX, arribaY, posicionX=posicionX+50, arribaY, color_linea);
+                hacer_linea(contexto, posicionX, arribaY, posicionX, Posicion, color_linea);
+                hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+50, Posicion, color_linea); 
+            }
+            
+        }else{
+            if(arreglo_bits[i]==arreglo_bits[i+1]){
+                hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+50, Posicion, color_linea);
+                hacer_linea(contexto, posicionX, Posicion, posicionX, arribaY, color_linea);
+                hacer_linea(contexto, posicionX, arribaY, posicionX=posicionX+50, arribaY, color_linea);
+                hacer_linea(contexto, posicionX, arribaY, posicionX, Posicion, color_linea);
+            }else{
+                hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+50, Posicion, color_linea);
+                hacer_linea(contexto, posicionX, Posicion, posicionX, arribaY, color_linea);
+                hacer_linea(contexto, posicionX, arribaY, posicionX=posicionX+50, arribaY, color_linea);
+            }
+            
+        }
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 function senal_MANCHESTER(arreglo_bits){
     arreglo_bits;
     var posicionX = 1;
@@ -408,7 +501,7 @@ function senal_MANCHESTER(arreglo_bits){
                     hacer_linea(contexto, posicionX, abajoY, posicionX+=10, abajoY, color_linea);
                 }
                 posicionY = abajoY;
-            }  */  
+            }  
         }
         else{
             if (posicionY == abajoY) {
@@ -435,7 +528,7 @@ function senal_MANCHESTER(arreglo_bits){
            
         }
     }
-}
+} */
 
 
 
