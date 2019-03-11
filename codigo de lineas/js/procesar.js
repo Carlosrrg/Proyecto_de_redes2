@@ -41,9 +41,8 @@ btn_numero_bits.addEventListener("click", function(){
 
         for(var i = 0; i < cantidad_bits; i++){ 
             bits_graficar.innerHTML += `<input type="text" class="caja_bit" id="bit_${i}" placeholder="0">`; 
-        }
-        canvas.width =  cantidad_bits*100; 
-        ancho = canvas.width; 
+        } 
+        ancho = cantidad_bits*100;  
     }
     else{
     	alert("Ingrese un valor mayor a cero y positivo...");
@@ -73,6 +72,9 @@ btn_hacer_grafica.addEventListener("click", function(){
     else if(codigo_linea.value == "CMI"){
         senal_CMI(obtener_bits_arreglo());
     }
+    else if(codigo_linea.value == "MANCHESTER"){
+        senal_MANCHESTER(obtener_bits_arreglo());
+    }
     else{
     	alert("Por favor, seleccione una opcion...");
     }
@@ -95,10 +97,10 @@ function limpiar_canvas_grafica(canvas, color){
 }                 //xi, yi, xf, yf
 
 function hacer_rectangulo(){
-    hacer_linea(contexto, 1, 1, ancho, 1, color_cuadricula);//LINEA SUPERIOR
-    hacer_linea(contexto, 1, 1, 1, altura, color_cuadricula);//LINEA IZQUIERDA
-    hacer_linea(contexto, 1, altura-1, ancho, altura-1, color_cuadricula);//LINEA INFERIOR
-    hacer_linea(contexto, ancho-1, 0, ancho-1, altura, color_cuadricula); //LINEA DERECHA
+    hacer_linea(contexto, 1, 1, ancho, 1, color_centro);//LINEA SUPERIOR
+    hacer_linea(contexto, 1, 1, 1, altura, color_centro);//LINEA IZQUIERDA
+    hacer_linea(contexto, 1, altura-1, ancho, altura-1, color_centro);//LINEA INFERIOR
+    hacer_linea(contexto, ancho-1, 0, ancho-1, altura, color_centro); //LINEA DERECHA
 }
 
 function hacer_linea(contexto, x0, y0, x1, y1, color_cuadricula){
@@ -389,6 +391,65 @@ function senal_CMI(arreglo_bits){
     }
 }
 
+
+function senal_MANCHESTER(arreglo_bits){
+    arreglo_bits;
+    var posicionX = 1;
+    var posicionY = 1;
+    var arribaY = 3;
+    var abajoY = altura - 3;
+ 
+
+    for(var i = 0; i < arreglo_bits.length; i++){
+        if(arreglo_bits[i] == 1){ 
+            if(posicionY == arribaY){
+                for(var i = 0; i < 5; i++){
+                    hacer_linea(contexto, posicionX, arribaY, posicionX+=10, arribaY, color_linea);
+                }
+                hacer_linea(contexto, posicionX, posicionY, posicionX, abajoY, color_linea);
+                for(var i = 0; i < 5; i++){
+                    hacer_linea(contexto, posicionX, abajoY, posicionX+=10, abajoY, color_linea);
+                }
+                posicionY = arribaY;
+            }
+            /*else {
+                hacer_linea(contexto, posicionX, abajoY, posicionX, arribaY, color_linea);
+                for(var i = 0; i < 5; i++){
+                    hacer_linea(contexto, posicionX, arribaY, posicionX+=10, arribaY, color_linea);
+                }
+                hacer_linea(contexto, posicionX, arribaY, posicionX, abajoY, color_linea);
+                for(var i = 0; i < 5; i++){
+                    hacer_linea(contexto, posicionX, abajoY, posicionX+=10, abajoY, color_linea);
+                }
+                posicionY = abajoY;
+            }  */  
+        }
+        else{
+            if (posicionY == abajoY) {
+                for(var j = 0; j < 5; j++){
+                    hacer_linea(contexto, posicionX, posicionY, posicionX+=10, posicionY, color_linea);
+                }
+                hacer_linea(contexto, posicionX, posicionY, posicionX, arribaY, color_linea);
+                for(var j = 0; j < 5; j++){
+                    hacer_linea(contexto, posicionX, arribaY, posicionX+=10, arribaY, color_linea);
+                }
+                posicionY = arribaY;
+            }
+            else {
+                hacer_linea(contexto, posicionX, posicionY, posicionX, abajoY, color_linea);
+                for(var j = 0; j < 5; j++){
+                    hacer_linea(contexto, posicionX, abajoY, posicionX+=10, abajoY, color_linea);
+                }
+                hacer_linea(contexto, posicionX, abajoY, posicionX, arribaY, color_linea);
+                for(var j = 0; j < 5; j++){
+                    hacer_linea(contexto, posicionX, arribaY, posicionX+=10, arribaY, color_linea);
+                }
+                posicionY = arribaY;
+            }
+           
+        }
+    }
+}
 
 
 
