@@ -513,12 +513,12 @@ function senal_HDB3(arreglo_bits){
         else{
             if (verificar_ceros(arreglo_bits, i)) {
                 //alert("son 4 ceros");
-                if () {
+                /*if () {
 
                 }
                 else{
-                    
-                }
+
+                }*/
             }
             for(var j = 0; j < 10; j++){
                 posicionY = linea_central;
