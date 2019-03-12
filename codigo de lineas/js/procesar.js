@@ -68,7 +68,7 @@ btn_hacer_grafica.addEventListener("click", function(){
         senal_AMI(obtener_bits_arreglo());
     }
     else if(codigo_linea.value == "ADI"){
-        senal_ADI(obtener_bits_arreglo());
+        senal_ADI(obtener_bits_arreglo());             
     }
     else if(codigo_linea.value == "CMI"){
         senal_CMI(obtener_bits_arreglo());
@@ -76,14 +76,11 @@ btn_hacer_grafica.addEventListener("click", function(){
     else if(codigo_linea.value == "MANCHESTER"){
         senal_MANCHESTER(obtener_bits_arreglo());
     }
-    else if(codigo_linea.value == "HDB3"){
-        senal_HDB3(obtener_bits_arreglo());
-    }
     else if(codigo_linea.value == "B3ZS"){
-        senal_B3ZS(obtener_bits_arreglo());
+        senal_B3ZS(obtener_bits_arreglo());     
     }
-    else if(codigo_linea.value == "B6ZS"){
-        senal_B6ZS(obtener_bits_arreglo());
+    else if(codigo_linea.value == "HDB3"){
+        senal_HDB3(obtener_bits_arreglo());     
     }
     else{
     	alert("Por favor, seleccione una opcion...");
@@ -227,7 +224,7 @@ function senal_AMI(arreglo_bits){
     var abajoY = altura - 2; 
     var linea_central = abajoY/2;
     var cont = 0;
-    var alternador = 0;
+    var alternador=0;
 
     for(var i = 0; i < arreglo_bits.length; i++){
     	if(arreglo_bits[i] == 1){
@@ -396,7 +393,7 @@ function senal_MANCHESTER(arreglo_bits){
 	var arribaY = 2;
     var abajoY = altura - 2; 
     var linea_central = abajoY/2;
-    var contador=0;
+    var primeravez=0;
     var contador2=0;
 
 
@@ -434,11 +431,14 @@ function senal_MANCHESTER(arreglo_bits){
 }
 
 
+
+
+
 function senal_B3ZS(arreglo_bits){
-arreglo_bits;
-    var posicionX = 1;
-    var contadorcero = 0;
-    var arribaY = 2;
+    arreglo_bits;
+	var posicionX = 1;
+	var contadorcero = 0;
+	var arribaY = 2;
     var abajoY = altura - 2; 
     var linea_central = abajoY/2;
     var alternador=0;
@@ -452,19 +452,20 @@ arreglo_bits;
 
         if(arreglo_bits[i]==1){ //caso en que sea 1
             if(alternador==0){
-                hacer_linea(contexto, posicionX, Posicion, posicionX, arribaY, color_linea);
-                hacer_linea(contexto, posicionX, arribaY, posicionX=posicionX+50, arribaY, color_linea);
-                hacer_linea(contexto, posicionX, arribaY, posicionX, Posicion, color_linea);
+                hacer_linea(contexto, posicionX, Posicion, posicionX, 2, color_linea);
+                hacer_linea(contexto, posicionX, 2, posicionX=posicionX+50, 2, color_linea);
+                hacer_linea(contexto, posicionX, 2, posicionX, Posicion, color_linea);
                 hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+50, Posicion, color_linea);
                 alternador=1;
                 
             }else{
                 if(alternador==1){
                     hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+50, Posicion, color_linea);
-                    hacer_linea(contexto, posicionX, Posicion, posicionX, linea_central*2, color_linea);
-                    hacer_linea(contexto, posicionX, linea_central*2, posicionX=posicionX+50, linea_central*2, color_linea);
-                    hacer_linea(contexto, posicionX, linea_central*2, posicionX, Posicion, color_linea);
+                    hacer_linea(contexto, posicionX, Posicion, posicionX, 200, color_linea);
+                    hacer_linea(contexto, posicionX, 200, posicionX=posicionX+50, 200, color_linea);
+                    hacer_linea(contexto, posicionX, 200, posicionX, Posicion, color_linea);
                     alternador=0;
+                    cambiolado=1;
                 }
             }
         }else{//caso en que sea 0
@@ -484,6 +485,7 @@ arreglo_bits;
           }
               if(contadorcero==2){
                 hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+200, Posicion, color_linea);
+                i=i+1;
               }
                   if(contadorcero==3){
                             //aqui tiene que ir una condicion poderosa
@@ -495,14 +497,22 @@ arreglo_bits;
                                 hacer_linea(contexto, posicionX, arribaY, posicionX, Posicion, color_linea);
                                 hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+50, Posicion, color_linea);
                                 //luego hace un 0
-                                hacer_linea(contexto, posicionX, linea_central, posicionX=posicionX+100, linea_central, color_linea);
+                                hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+100, Posicion, color_linea);
                                 //luego hace un V
-                                hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+200, Posicion, color_linea);
-                                hacer_linea(contexto, posicionX, linea_central, posicionX,arribaY, color_linea);
-                                hacer_linea(contexto, posicionX, arribaY, posicionX=posicionX+50, arribaY, color_linea);
-                                hacer_linea(contexto, posicionX, arribaY, posicionX, linea_central, color_linea);
+                                hacer_linea(contexto, posicionX, Posicion, posicionX, 2, color_linea);
+                                hacer_linea(contexto, posicionX, 2, posicionX=posicionX+50,2, color_linea);
+                                hacer_linea(contexto, posicionX, 2, posicionX, Posicion, color_linea);
+                                for(var j=0; j<100;j++){
+                                    hacer_linea(contexto, posicionX=posicionX-50, arribaY, posicionX=posicionX+50, arribaY, color_linea);
+                                    
+                                    arribaY=arribaY+1;
+                                    }
+                                hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+50, Posicion, color_linea);
+
+                                
+                                
                 
-                            }
+                            }//sospechas aqui de que falta codigo en el caso de alternador=1
 
                       if(alternador==0){
                             
@@ -527,163 +537,276 @@ arreglo_bits;
                         hacer_linea(contexto, posicionX, linea_central, posicionX,arribaY, color_linea);
                         hacer_linea(contexto, posicionX, arribaY, posicionX=posicionX+50, arribaY, color_linea);
                         hacer_linea(contexto, posicionX, arribaY, posicionX, linea_central, color_linea);
+                        
                     
                         for(var j=0; j<100;j++){
                         hacer_linea(contexto, posicionX=posicionX-50, arribaY, posicionX=posicionX+50, arribaY, color_linea);
                         
                         arribaY=arribaY+1;
                         }
+
+                        hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+50, Posicion, color_linea);
+
                             primeravezAl=1;
                             i=i+2;  
                       }
                     
                   }
+              
+          
+
+
             
         }
 
     }
-}
-
-
-function senal_B6ZS(arreglo_bits){
 
 }
-
-
-
 
 
 function senal_HDB3(arreglo_bits){
     arreglo_bits;
-    var posicionX = 1;
-    var posicionY = 1;
-    var arribaY = 2;
+	var posicionX = 1;
+	var contadorcero = 0;
+	var arribaY = 2;
     var abajoY = altura - 2; 
     var linea_central = abajoY/2;
-    var recibir_ceros = 0;
     var alternador=0;
-    var cont = 0;
+    
+    var primeravez=0;
 
 
-    //recibir_ceros = verificar_ceros(arreglo_bits);
-    //alert(recibir_ceros);
-
-
+    var Posicion =linea_central;
 
     for(var i = 0; i < arreglo_bits.length; i++){
-        if(arreglo_bits[i] == 1){
+
+        if(arreglo_bits[i]==1){ //caso en que sea 1
             if(alternador==0){
-                if(posicionY == linea_central){
-                    hacer_linea(contexto, posicionX, linea_central, posicionX, arribaY, color_linea); 
-                    posicionY = arribaY;
-                    
-                }
-                for(var j = 0; j < 5; j++){
-                    cont++;
-                    hacer_linea(contexto, posicionX, posicionY, posicionX+=10, posicionY, color_linea);  
-                }
-                if(cont >= 5){
-                    hacer_linea(contexto, posicionX, arribaY, posicionX, linea_central, color_linea);  
-                    posicionY = linea_central;
-                    for(var j = 0; j < 5; j++){
-                        hacer_linea(contexto, posicionX, posicionY, posicionX+=10, posicionY, color_linea); 
-                    }
-                    alternador=1;
-                }
+                hacer_linea(contexto, posicionX, Posicion, posicionX, 2, color_linea);
+                hacer_linea(contexto, posicionX, 2, posicionX=posicionX+50, 2, color_linea);
+                hacer_linea(contexto, posicionX, 2, posicionX, Posicion, color_linea);
+                hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+50, Posicion, color_linea);
+                alternador=1;
+                
             }else{
                 if(alternador==1){
-                    
-                        hacer_linea(contexto, posicionX, linea_central, posicionX, 200, color_linea); 
-                        posicionY = 200;
+                    hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+50, Posicion, color_linea);
+                    hacer_linea(contexto, posicionX, Posicion, posicionX, 200, color_linea);
+                    hacer_linea(contexto, posicionX, 200, posicionX=posicionX+50, 200, color_linea);
+                    hacer_linea(contexto, posicionX, 200, posicionX, Posicion, color_linea);
+                    alternador=0;
+                    cambiolado=1;
+                }
+            }
+        }else{//caso en que sea 0
+            
+            contadorcero=1;
+
+            if(arreglo_bits[i+1]==0){
+                contadorcero=2;
+
+                if(arreglo_bits[i+2]==0){
+                    contadorcero=3;
+
+                    if(arreglo_bits[i+3]==0){
+                        contadorcero=4;
+                    }
+                }
+            }
+
+          if(contadorcero==1){
+            hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+100, Posicion, color_linea);
+          }
+              if(contadorcero==2){
+                hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+200, Posicion, color_linea);
+                i=i+1;
+              }
+                  if(contadorcero==3){
+                            
+                    hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+300, Posicion, color_linea);
+                    i=i+2;
+                  }
+                  
+                  if(contadorcero==4){
+                      //aqui tiene que ir una condicion poderosa
+                            //ya sabemos que es cero y sera par con pulso negativo
+                            if(alternador==0 && primeravez==1){
+                                //hace un B
+                                hacer_linea(contexto, posicionX, Posicion, posicionX, arribaY, color_linea);
+                                hacer_linea(contexto, posicionX, arribaY, posicionX=posicionX+50, arribaY, color_linea);
+                                hacer_linea(contexto, posicionX, arribaY, posicionX, Posicion, color_linea);
+                                hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+50, Posicion, color_linea);
+                                //luego hace un 0
+                                hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+100, Posicion, color_linea);
+                                hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+100, Posicion, color_linea);
+                                //luego hace un V
+                                hacer_linea(contexto, posicionX, Posicion, posicionX, 2, color_linea);
+                                hacer_linea(contexto, posicionX, 2, posicionX=posicionX+50,2, color_linea);
+                                hacer_linea(contexto, posicionX, 2, posicionX, Posicion, color_linea);
+                                for(var j=0; j<100;j++){
+                                    hacer_linea(contexto, posicionX=posicionX-50, arribaY, posicionX=posicionX+50, arribaY, color_linea);
+                                    
+                                    arribaY=arribaY+1;
+                                    }
+                                hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+50, Posicion, color_linea);
+
+                                
+                                
+                
+                            }
+
+                      if(alternador==0){
+                            
+                        hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+300, Posicion, color_linea);
+                        hacer_linea(contexto, posicionX, linea_central*2, posicionX, linea_central*2, color_linea);
+                        hacer_linea(contexto, posicionX, linea_central*2, posicionX=posicionX+50, linea_central*2, color_linea);
+                        hacer_linea(contexto, posicionX, linea_central*2, posicionX, linea_central, color_linea);//sube
                         
                     
-                    for(var j = 0; j < 5; j++){
-                        cont++;
-                        hacer_linea(contexto, posicionX, posicionY, posicionX+=10, 200, color_linea); 
-                    }
-                    if(cont >= 5){
-                        hacer_linea(contexto, posicionX, 100, posicionX, 200, color_linea);  
-                        posicionY = linea_central;
-                        for(var j = 0; j < 5; j++){
-                            hacer_linea(contexto, posicionX, posicionY, posicionX+=10, posicionY, color_linea); 
+                        for(var j=0; j<50;j++){
+                        hacer_linea(contexto, posicionX=posicionX-50, linea_central*2, posicionX=posicionX+50, linea_central*2, color_linea);
+                        
+                        linea_central=linea_central-1;
                         }
-                        alternador=0;
-                    }
+                        hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+50, Posicion, color_linea);
+                        primeravez=1;
+                        i=i+3;
+                      }
+                      if(alternador==1){
+
+                        hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+300, Posicion, color_linea);
+                        hacer_linea(contexto, posicionX, linea_central, posicionX,arribaY, color_linea);
+                        hacer_linea(contexto, posicionX, arribaY, posicionX=posicionX+50, arribaY, color_linea);
+                        hacer_linea(contexto, posicionX, arribaY, posicionX, linea_central, color_linea);
+                        
                     
-                }
-                
-            }
+                        for(var j=0; j<100;j++){
+                        hacer_linea(contexto, posicionX=posicionX-50, arribaY, posicionX=posicionX+50, arribaY, color_linea);
+                        
+                        arribaY=arribaY+1;
+                        }
+
+                        hacer_linea(contexto, posicionX, Posicion, posicionX=posicionX+50, Posicion, color_linea);
+
+                            primeravezAl=1;
+                            i=i+3;  
+                      }
+                  }
+              
+          
+
+
             
         }
-        
-        else{
-            if (verificar_ceros(arreglo_bits, i)) {
-                //alert("son 4 ceros");
-                /*if () {
 
-                }
-                else{
-
-                }*/
-            }
-            for(var j = 0; j < 10; j++){
-                posicionY = linea_central;
-                hacer_linea(contexto, posicionX, posicionY, posicionX+=10, posicionY, color_linea);
-            }
-            
-        }
     }
 
 }
 
 
-function verificar_ceros(arreglo_bits, valor_actual_i){
-    /*var valido = true;
-    var min = arreglo_bits.length - (valor_actual_i+1) + 1;
-    if(min < 4){
-        valido = false;
-    }else{
-        for(var i = 0; i < 4; i++){
-            if(arreglo_bits[valor_actual_i + i] == 1){
-                valido = false;
-                break;
-            }
-        }
-    }
-    return valido;*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+function senal_MANCHESTER(arreglo_bits){
     arreglo_bits;
-    valor_actual_i;
-    var cont = 0;
-    var enviar = false;
+    var posicionX = 1;
+    var posicionY = 1;
+    var arribaY = 3;
+    var abajoY = altura - 3;
+ 
 
-    for(var i = valor_actual_i; i < arreglo_bits.length; i++){
-        if (arreglo_bits[i] == 0) {
-            cont++;
-            if (cont == 4){
-                enviar = true;
-                cont = 0;
-                break;
+    for(var i = 0; i < arreglo_bits.length; i++){
+        if(arreglo_bits[i] == 1){ 
+            if(posicionY == arribaY){
+                for(var i = 0; i < 5; i++){
+                    hacer_linea(contexto, posicionX, arribaY, posicionX+=10, arribaY, color_linea);
+                }
+                hacer_linea(contexto, posicionX, posicionY, posicionX, abajoY, color_linea);
+                for(var i = 0; i < 5; i++){
+                    hacer_linea(contexto, posicionX, abajoY, posicionX+=10, abajoY, color_linea);
+                }
+                posicionY = arribaY;
             }
+            /*else {
+                hacer_linea(contexto, posicionX, abajoY, posicionX, arribaY, color_linea);
+                for(var i = 0; i < 5; i++){
+                    hacer_linea(contexto, posicionX, arribaY, posicionX+=10, arribaY, color_linea);
+                }
+                hacer_linea(contexto, posicionX, arribaY, posicionX, abajoY, color_linea);
+                for(var i = 0; i < 5; i++){
+                    hacer_linea(contexto, posicionX, abajoY, posicionX+=10, abajoY, color_linea);
+                }
+                posicionY = abajoY;
+            }  
         }
         else{
-            cont = 0;
-            enviar = false;
+            if (posicionY == abajoY) {
+                for(var j = 0; j < 5; j++){
+                    hacer_linea(contexto, posicionX, posicionY, posicionX+=10, posicionY, color_linea);
+                }
+                hacer_linea(contexto, posicionX, posicionY, posicionX, arribaY, color_linea);
+                for(var j = 0; j < 5; j++){
+                    hacer_linea(contexto, posicionX, arribaY, posicionX+=10, arribaY, color_linea);
+                }
+                posicionY = arribaY;
+            }
+            else {
+                hacer_linea(contexto, posicionX, posicionY, posicionX, abajoY, color_linea);
+                for(var j = 0; j < 5; j++){
+                    hacer_linea(contexto, posicionX, abajoY, posicionX+=10, abajoY, color_linea);
+                }
+                hacer_linea(contexto, posicionX, abajoY, posicionX, arribaY, color_linea);
+                for(var j = 0; j < 5; j++){
+                    hacer_linea(contexto, posicionX, arribaY, posicionX+=10, arribaY, color_linea);
+                }
+                posicionY = arribaY;
+            }
+           
         }
     }
-    
-    if (enviar == true) {
-        return enviar;
-    }
-    else{
-        return enviar; 
-    } 
-
-}
-
-
-
-
-
+} */
 
 
 
