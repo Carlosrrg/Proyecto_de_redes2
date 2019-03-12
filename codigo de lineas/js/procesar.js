@@ -76,6 +76,15 @@ btn_hacer_grafica.addEventListener("click", function(){
     else if(codigo_linea.value == "MANCHESTER"){
         senal_MANCHESTER(obtener_bits_arreglo());
     }
+    else if(codigo_linea.value == "HDB3"){
+        senal_HDB3(obtener_bits_arreglo());
+    }
+    else if(codigo_linea.value == "B3ZS"){
+        senal_B3ZS(obtener_bits_arreglo());
+    }
+    else if(codigo_linea.value == "B6ZS"){
+        senal_B6ZS(obtener_bits_arreglo());
+    }
     else{
     	alert("Por favor, seleccione una opcion...");
     }
@@ -218,7 +227,7 @@ function senal_AMI(arreglo_bits){
     var abajoY = altura - 2; 
     var linea_central = abajoY/2;
     var cont = 0;
-    var alternador=0;
+    var alternador = 0;
 
     for(var i = 0; i < arreglo_bits.length; i++){
     	if(arreglo_bits[i] == 1){
@@ -425,110 +434,150 @@ function senal_MANCHESTER(arreglo_bits){
 }
 
 
+function senal_B3ZS(arreglo_bits){
+
+}
+
+
+function senal_B6ZS(arreglo_bits){
+
+}
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-function senal_MANCHESTER(arreglo_bits){
+function senal_HDB3(arreglo_bits){
     arreglo_bits;
     var posicionX = 1;
     var posicionY = 1;
-    var arribaY = 3;
-    var abajoY = altura - 3;
- 
+    var arribaY = 2;
+    var abajoY = altura - 2; 
+    var linea_central = abajoY/2;
+    var recibir_ceros = 0;
+    var alternador=0;
+    var cont = 0;
+
+
+    //recibir_ceros = verificar_ceros(arreglo_bits);
+    //alert(recibir_ceros);
+
+
 
     for(var i = 0; i < arreglo_bits.length; i++){
-        if(arreglo_bits[i] == 1){ 
-            if(posicionY == arribaY){
-                for(var i = 0; i < 5; i++){
-                    hacer_linea(contexto, posicionX, arribaY, posicionX+=10, arribaY, color_linea);
+        if(arreglo_bits[i] == 1){
+            if(alternador==0){
+                if(posicionY == linea_central){
+                    hacer_linea(contexto, posicionX, linea_central, posicionX, arribaY, color_linea); 
+                    posicionY = arribaY;
+                    
                 }
-                hacer_linea(contexto, posicionX, posicionY, posicionX, abajoY, color_linea);
-                for(var i = 0; i < 5; i++){
-                    hacer_linea(contexto, posicionX, abajoY, posicionX+=10, abajoY, color_linea);
+                for(var j = 0; j < 5; j++){
+                    cont++;
+                    hacer_linea(contexto, posicionX, posicionY, posicionX+=10, posicionY, color_linea);  
                 }
-                posicionY = arribaY;
+                if(cont >= 5){
+                    hacer_linea(contexto, posicionX, arribaY, posicionX, linea_central, color_linea);  
+                    posicionY = linea_central;
+                    for(var j = 0; j < 5; j++){
+                        hacer_linea(contexto, posicionX, posicionY, posicionX+=10, posicionY, color_linea); 
+                    }
+                    alternador=1;
+                }
+            }else{
+                if(alternador==1){
+                    
+                        hacer_linea(contexto, posicionX, linea_central, posicionX, 200, color_linea); 
+                        posicionY = 200;
+                        
+                    
+                    for(var j = 0; j < 5; j++){
+                        cont++;
+                        hacer_linea(contexto, posicionX, posicionY, posicionX+=10, 200, color_linea); 
+                    }
+                    if(cont >= 5){
+                        hacer_linea(contexto, posicionX, 100, posicionX, 200, color_linea);  
+                        posicionY = linea_central;
+                        for(var j = 0; j < 5; j++){
+                            hacer_linea(contexto, posicionX, posicionY, posicionX+=10, posicionY, color_linea); 
+                        }
+                        alternador=0;
+                    }
+                    
+                }
+                
             }
-            /*else {
-                hacer_linea(contexto, posicionX, abajoY, posicionX, arribaY, color_linea);
-                for(var i = 0; i < 5; i++){
-                    hacer_linea(contexto, posicionX, arribaY, posicionX+=10, arribaY, color_linea);
-                }
-                hacer_linea(contexto, posicionX, arribaY, posicionX, abajoY, color_linea);
-                for(var i = 0; i < 5; i++){
-                    hacer_linea(contexto, posicionX, abajoY, posicionX+=10, abajoY, color_linea);
-                }
-                posicionY = abajoY;
-            }  
+            
         }
+        
         else{
-            if (posicionY == abajoY) {
-                for(var j = 0; j < 5; j++){
-                    hacer_linea(contexto, posicionX, posicionY, posicionX+=10, posicionY, color_linea);
+            if (verificar_ceros(arreglo_bits, i)) {
+                //alert("son 4 ceros");
+                if () {
+
                 }
-                hacer_linea(contexto, posicionX, posicionY, posicionX, arribaY, color_linea);
-                for(var j = 0; j < 5; j++){
-                    hacer_linea(contexto, posicionX, arribaY, posicionX+=10, arribaY, color_linea);
+                else{
+                    
                 }
-                posicionY = arribaY;
             }
-            else {
-                hacer_linea(contexto, posicionX, posicionY, posicionX, abajoY, color_linea);
-                for(var j = 0; j < 5; j++){
-                    hacer_linea(contexto, posicionX, abajoY, posicionX+=10, abajoY, color_linea);
-                }
-                hacer_linea(contexto, posicionX, abajoY, posicionX, arribaY, color_linea);
-                for(var j = 0; j < 5; j++){
-                    hacer_linea(contexto, posicionX, arribaY, posicionX+=10, arribaY, color_linea);
-                }
-                posicionY = arribaY;
+            for(var j = 0; j < 10; j++){
+                posicionY = linea_central;
+                hacer_linea(contexto, posicionX, posicionY, posicionX+=10, posicionY, color_linea);
             }
-           
+            
         }
     }
-} */
+
+}
+
+
+function verificar_ceros(arreglo_bits, valor_actual_i){
+    /*var valido = true;
+    var min = arreglo_bits.length - (valor_actual_i+1) + 1;
+    if(min < 4){
+        valido = false;
+    }else{
+        for(var i = 0; i < 4; i++){
+            if(arreglo_bits[valor_actual_i + i] == 1){
+                valido = false;
+                break;
+            }
+        }
+    }
+    return valido;*/
+    arreglo_bits;
+    valor_actual_i;
+    var cont = 0;
+    var enviar = false;
+
+    for(var i = valor_actual_i; i < arreglo_bits.length; i++){
+        if (arreglo_bits[i] == 0) {
+            cont++;
+            if (cont == 4){
+                enviar = true;
+                cont = 0;
+                break;
+            }
+        }
+        else{
+            cont = 0;
+            enviar = false;
+        }
+    }
+    
+    if (enviar == true) {
+        return enviar;
+    }
+    else{
+        return enviar; 
+    } 
+
+}
+
+
+
+
+
 
 
 
